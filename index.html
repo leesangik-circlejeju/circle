@@ -1,113 +1,197 @@
+
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>동그라미 통합 제어 보드 - 홈</title>
+    <title>동그라미 하네스 - 공지사항</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
         
-        :root {
-            --notion-bg: #ffffff;
-            --notion-text: #37352f;
-            --notion-text-light: #787774;
-            --notion-border: rgba(55, 53, 47, 0.09);
-            --notion-hover: rgba(55, 53, 47, 0.03);
-            --notion-blue: #2383e2;
-            --notion-gray-bg: #f1f1ef;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+        body { 
+            background: radial-gradient(circle at top left, #1e1b4b, #0f172a 60%, #020617); 
+            color: #f8fafc; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding-bottom: 5rem;
+        }
+        
+        /* Navigation Menu */
+        nav { 
+            width: 100%; 
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            padding: 1.25rem 0; 
+            margin-bottom: 3rem;
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 3rem; }
+        .nav-item { 
+            text-decoration: none; 
+            color: #94a3b8; 
+            font-size: 1rem; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+            position: relative; 
+            padding: 0.5rem 0; 
+        }
+        .nav-item:hover, .nav-item.active { color: #38bdf8; }
+        .nav-item.active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 2px; 
+            background: linear-gradient(90deg, #38bdf8, #a855f7); 
+            border-radius: 2px; 
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
-        body { background: var(--notion-bg); color: var(--notion-text); line-height: 1.5; min-height: 100vh; overflow-x: hidden; }
-        
-        /* Navigation */
-        nav { width: 100%; border-bottom: 1px solid var(--notion-border); background: #fbfbfa; position: sticky; top: 0; z-index: 1000; padding: 0.5rem 0; }
-        .nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 1.5rem; padding: 0 2rem; }
-        .nav-item { text-decoration: none; color: var(--notion-text-light); font-size: 0.9rem; font-weight: 500; transition: all 0.2s ease; padding: 0.4rem 0.6rem; border-radius: 4px; }
-        .nav-item:hover { background: var(--notion-hover); color: var(--notion-text); }
-        .nav-item.active { color: var(--notion-text); background: var(--notion-hover); font-weight: 600; }
+        /* Content Layout */
+        .container { width: 100%; max-width: 1000px; padding: 0 1.5rem; animation: fadeInDown 0.8s ease-out; }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 32px; 
+            padding: 3.5rem; 
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4); 
+            position: relative;
+        }
 
-        /* Layout */
-        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem 2rem; width: 100%; }
-        header { margin-bottom: 2.5rem; }
-        header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-        header p { color: var(--notion-text-light); font-size: 1.1rem; }
+        /* Markdown Elements styling (Dark Theme) */
+        h1 { 
+            font-family: 'Outfit', sans-serif; 
+            font-size: 3.5rem; 
+            letter-spacing: -1px; 
+            background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin-bottom: 2rem; 
+            text-align: center;
+        }
+        h2 { 
+            font-size: 1.8rem; 
+            font-weight: 600; 
+            margin: 2.5rem 0 1.25rem 0; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.8rem; 
+            border-bottom: 1px solid rgba(255,255,255,0.06); 
+            padding-bottom: 0.8rem;
+            color: #f8fafc;
+        }
+        h3 { font-size: 1.4rem; color: #38bdf8; margin: 1.5rem 0 0.8rem 0; }
+        p { color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; }
         
-        /* Notion Blocks */
-        .callout { background: #f1f1ef; border-radius: 4px; padding: 1rem 1.25rem; display: flex; gap: 0.75rem; margin-bottom: 1.5rem; align-items: flex-start; }
-        .callout .emoji { font-size: 1.25rem; }
-        .callout .content { font-size: 0.95rem; color: var(--notion-text); }
+        ul, ol { margin-left: 1.5rem; margin-bottom: 2rem; list-style-type: none; }
+        li { 
+            padding: 0.8rem 1.2rem; 
+            margin-bottom: 0.75rem; 
+            background: rgba(255,255,255,0.03); 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            color: #cbd5e1;
+        }
+        li:hover { 
+            transform: translateX(10px); 
+            background: rgba(56, 189, 248, 0.08); 
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #fff;
+        }
+        
+        a { color: #38bdf8; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+        a:hover { color: #a855f7; text-decoration: underline; }
+        
+        blockquote { 
+            background: rgba(168, 85, 247, 0.05); 
+            border-left: 4px solid #a855f7; 
+            padding: 1.5rem 2rem; 
+            border-radius: 0 16px 16px 0; 
+            margin: 2rem 0; 
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+        
+        hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 3rem 0; }
 
-        .h2-divider { border-bottom: 1px solid var(--notion-border); padding-bottom: 0.5rem; margin: 2rem 0 1rem 0; font-size: 1.4rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
-        
-        .file-grid { display: flex; flex-direction: column; gap: 2px; }
-        .file-row { display: flex; align-items: center; padding: 0.5rem 0.75rem; border-radius: 4px; text-decoration: none; color: inherit; transition: background 0.2s ease; gap: 0.75rem; }
-        .file-row:hover { background: var(--notion-hover); }
-        .file-icon { font-size: 1.2rem; width: 24px; text-align: center; }
-        .file-name { font-size: 0.95rem; flex: 1; border-bottom: 1px solid transparent; }
-        .file-row:hover .file-name { color: var(--notion-blue); text-decoration: underline; }
-        
-        /* Buttons */
-        .btn { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid var(--notion-border); font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; color: var(--notion-text); transition: background 0.2s; }
-        .btn:hover { background: var(--notion-hover); }
-        
-        /* Dashboard Stats */
-        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
-        .stat-card { border: 1px solid var(--notion-border); border-radius: 8px; padding: 1.25rem; }
-        .stat-card .label { font-size: 0.8rem; color: var(--notion-text-light); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.5rem; }
-        .stat-card .value { font-size: 1.75rem; font-weight: 700; color: var(--notion-text); }
+        /* Schedule Helper Components */
+        .btn-open-raw { 
+            position: absolute; 
+            top: 2rem; 
+            right: 2rem; 
+            padding: 0.6rem 1.2rem; 
+            background: rgba(56, 189, 248, 0.1); 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            border-radius: 12px; 
+            color: #38bdf8; 
+            font-size: 0.85rem; 
+            transition: all 0.3s ease; 
+        }
+        .btn-open-raw:hover { 
+            background: rgba(56, 189, 248, 0.2); 
+            border-color: #38bdf8; 
+            color: #fff; 
+            transform: translateY(-2px); 
+        }
 
-        iframe { width: 100%; height: 700px; border: 1px solid var(--notion-border); border-radius: 8px; background: white; }
+        /* Google Sheet Iframe Container */
+        .iframe-container { 
+            width: 100%; 
+            height: 800px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            background: #fff; 
+            margin: 2.5rem 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        @keyframes fadeInDown { 
+            from { opacity: 0; transform: translateY(-30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
     </style>
 </head>
-
 <body>
-    
-<nav>
-    <div class="nav-inner">
-        <a href="index.html" class="nav-item active">🏠 홈</a>
-        <a href="schedule.html" class="nav-item ">🗓️ 일정표</a>
-        <a href="files.html" class="nav-item ">📁 파일보관함</a>
-    </div>
-</nav>
-
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-item active" class="nav-item">🏡 홈</a>
+            <a href="schedule.html" class="nav-item">🗓️ 일정표</a>
+            <a href="files.html" class="nav-item">🛠️ 파일관리</a>
+        </div>
+    </nav>
     <div class="container">
-        <header>
-            <h1>🏚️ 동그라미 통합 제어 보드</h1>
-            <p>프로젝트 하네스 시스템의 핵심 실시간 요약</p>
-        </header>
-
-        <div class="callout">
-            <span class="emoji">💡</span>
-            <div class="content">
-                이 페이지는 Notion과 실시간으로 연동됩니다. 수정사항은 <b>master_run.py</b> 프로세스를 통해 양쪽 모두에 반영됩니다.
-            </div>
-        </div>
-
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="label">연동 서비스</div>
-                <div class="value">3</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">동기화 문서</div>
-                <div class="value">10</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">상태</div>
-                <div class="value" style="color: #00a35c;">Active</div>
-            </div>
-        </div>
-
-        <h2 class="h2-divider">📌 공지 및 최근 활동 (From Notion)</h2>
-        <div id="notion-content">
-            <p style='color: #787774; font-style: italic;'>노션에 '공지사항' 페이지를 만들어 내용을 채워주시면 이 영역에 자동 반영됩니다.</p>
-        </div>
-
-        <div style="margin-top: 3rem; display: flex; gap: 1rem;">
-            <a href="schedule.html" class="btn">🗓️ 일정관리 이동</a>
-            <a href="files.html" class="btn">📁 파일보관함 이동</a>
+        <div class="glass-card">
+            
+            <h1>🏠 동그라미 통합 하네스에 오신 것을 환영합니다</h1>
+<blockquote>
+<p>🏥 본 시스템은 <strong>Notion</strong>과 <strong>Google Drive</strong>, 그리고 <strong>Web Dashboard</strong>를 하나로 연결하는 통합 컨트롤 센터입니다.</p>
+</blockquote>
+<h2>📢 최근 업데이트 및 공지사항</h2>
+<ul>
+<li><strong>디자인 복구</strong>: 사용자 요청에 따른 고도화된 <strong>다크 테마 및 글래스모피즘</strong> 디자인이 전면 적용되었습니다.</li>
+<li><strong>아키텍처 개편</strong>: <strong>Markdown-First</strong> 구조를 통해 데이터 무결성과 관리 편의성을 동시에 확보했습니다.</li>
+<li><strong>일정 관리 복구</strong>: 고정 구글 시트 기반의 안정적인 실시간 일정 관리 레이어가 복구되었습니다.</li>
+</ul>
+<h2>🚀 바로가기</h2>
+<ul>
+<li><a href="schedule.html">🗓️ 실시간 일정표 확인</a></li>
+<li><a href="files.html">🛠️ 파일보관함 및 기록지</a></li>
+</ul>
+<hr />
+<p><em>노션의 </em><em>'공지사항'</em><em> 페이지를 수정하고 파이프라인을 실행하면 이 영역의 내용이 자동으로 업데이트됩니다.</em></p>
         </div>
     </div>
 </body>
