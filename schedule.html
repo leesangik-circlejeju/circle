@@ -6,53 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동그라미 통합 제어 보드 - 일정표</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap');
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
-        body { background: radial-gradient(circle at top left, #1e1b4b, #0f172a 60%, #020617); color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        :root {
+            --notion-bg: #ffffff;
+            --notion-text: #37352f;
+            --notion-text-light: #787774;
+            --notion-border: rgba(55, 53, 47, 0.09);
+            --notion-hover: rgba(55, 53, 47, 0.03);
+            --notion-blue: #2383e2;
+            --notion-gray-bg: #f1f1ef;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background: var(--notion-bg); color: var(--notion-text); line-height: 1.5; min-height: 100vh; overflow-x: hidden; }
         
-        /* Navigation Menu */
-        nav { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 1000; padding: 1rem 0; }
-        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 3rem; }
-        .nav-item { text-decoration: none; color: #94a3b8; font-size: 1rem; font-weight: 500; transition: all 0.3s ease; position: relative; padding: 0.5rem 0; }
-        .nav-item:hover, .nav-item.active { color: #38bdf8; }
-        .nav-item.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, #38bdf8, #a855f7); border-radius: 2px; }
+        /* Navigation */
+        nav { width: 100%; border-bottom: 1px solid var(--notion-border); background: #fbfbfa; position: sticky; top: 0; z-index: 1000; padding: 0.5rem 0; }
+        .nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 1.5rem; padding: 0 2rem; }
+        .nav-item { text-decoration: none; color: var(--notion-text-light); font-size: 0.9rem; font-weight: 500; transition: all 0.2s ease; padding: 0.4rem 0.6rem; border-radius: 4px; }
+        .nav-item:hover { background: var(--notion-hover); color: var(--notion-text); }
+        .nav-item.active { color: var(--notion-text); background: var(--notion-hover); font-weight: 600; }
 
-        /* Common Layout */
-        header { text-align: center; margin: 3rem 0 2.5rem 0; animation: fadeInDown 1s ease-out; }
-        header h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; letter-spacing: -1px; background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
-        header p { color: #94a3b8; font-size: 1.1rem; font-weight: 300; }
-        .dashboard-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 2.5rem; align-items: center; padding: 0 1.5rem 3rem 1.5rem; }
+        /* Layout */
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem 2rem; width: 100%; }
+        header { margin-bottom: 2.5rem; }
+        header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        header p { color: var(--notion-text-light); font-size: 1.1rem; }
         
-        /* Sections & Cards */
-        .card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 1.5rem; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3); overflow: hidden; width: 100%; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; padding: 0 0.5rem; }
-        .section-header h2 { font-size: 1.5rem; font-weight: 600; display: flex; align-items: center; gap: 0.8rem; }
-        .open-raw-btn { background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 0.6rem 1.2rem; border-radius: 12px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; }
-        .open-raw-btn:hover { background: #38bdf8; color: #fff; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+        /* Notion Blocks */
+        .callout { background: #f1f1ef; border-radius: 4px; padding: 1rem 1.25rem; display: flex; gap: 0.75rem; margin-bottom: 1.5rem; align-items: flex-start; }
+        .callout .emoji { font-size: 1.25rem; }
+        .callout .content { font-size: 0.95rem; color: var(--notion-text); }
+
+        .h2-divider { border-bottom: 1px solid var(--notion-border); padding-bottom: 0.5rem; margin: 2rem 0 1rem 0; font-size: 1.4rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
         
-        /* Iframe */
-        .iframe-wrapper { width: 100%; height: 750px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); background: #fff; }
-        iframe { width: 100%; height: 100%; border: none; }
+        .file-grid { display: flex; flex-direction: column; gap: 2px; }
+        .file-row { display: flex; align-items: center; padding: 0.5rem 0.75rem; border-radius: 4px; text-decoration: none; color: inherit; transition: background 0.2s ease; gap: 0.75rem; }
+        .file-row:hover { background: var(--notion-hover); }
+        .file-icon { font-size: 1.2rem; width: 24px; text-align: center; }
+        .file-name { font-size: 0.95rem; flex: 1; border-bottom: 1px solid transparent; }
+        .file-row:hover .file-name { color: var(--notion-blue); text-decoration: underline; }
+        
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid var(--notion-border); font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; color: var(--notion-text); transition: background 0.2s; }
+        .btn:hover { background: var(--notion-hover); }
+        
+        /* Dashboard Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .stat-card { border: 1px solid var(--notion-border); border-radius: 8px; padding: 1.25rem; }
+        .stat-card .label { font-size: 0.8rem; color: var(--notion-text-light); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.5rem; }
+        .stat-card .value { font-size: 1.75rem; font-weight: 700; color: var(--notion-text); }
 
-        /* Grid & Service Cards */
-        .grid-container { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem; justify-content: center; }
-        .category-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 2.25rem; box-shadow: 0 12px 45px rgba(0, 0, 0, 0.25); transition: all 0.4s ease; display: flex; flex-direction: column; }
-        .category-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(168, 85, 247, 0.1); }
-        .category-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.8rem; }
-        .file-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-        .file-item { display: flex; align-items: flex-start; padding: 1rem 1.25rem; border-radius: 12px; background: rgba(255, 255, 255, 0.03); text-decoration: none; color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); line-height: 1.5; }
-        .file-item:hover { background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.5); color: #fff; transform: translateX(10px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .file-name { font-weight: 500; display: block; word-break: break-all; font-size: 0.95rem; }
-
-        /* Home Specific */
-        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%; }
-        .status-card { background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; text-align: center; }
-        .status-card h3 { font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
-        .status-card .value { font-size: 2.5rem; font-weight: 800; font-family: 'Outfit', sans-serif; background: linear-gradient(to right, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        iframe { width: 100%; height: 700px; border: 1px solid var(--notion-border); border-radius: 8px; background: white; }
     </style>
 </head>
 
@@ -60,28 +66,34 @@
     
 <nav>
     <div class="nav-inner">
-        <a href="index.html" class="nav-item ">🏡 홈 (요약)</a>
+        <a href="index.html" class="nav-item ">🏠 홈</a>
         <a href="schedule.html" class="nav-item active">🗓️ 일정표</a>
-        <a href="files.html" class="nav-item ">🛠️ 파일관리</a>
+        <a href="files.html" class="nav-item ">📁 파일보관함</a>
     </div>
 </nav>
 
-    <header>
-        <h1>실시간 일정표 제어</h1>
-        <p>마스터 구글 시트와의 실시간 동기화 레이어</p>
-    </header>
-    <div class="dashboard-container">
-        <section class="card">
-            <div class="section-header">
-                <h2>실시간 일정표 제어 레이어</h2>
-                <a href="https://docs.google.com/spreadsheets/d/1RjJlTltuygU9IbazCGKz0oqLmuPXuKa7Jm7MBBFh0yU/edit" target="_blank" class="open-raw-btn">
-                    새 탭에서 시트 열기 ↗
-                </a>
+    <div class="container">
+        <header>
+            <h1>🗓️ 실시간 일정표 제어</h1>
+            <p>마스터 구글 시트와의 직접 동기화 인터페이스</p>
+        </header>
+
+        <div class="callout" style="background: #e7f3f8;">
+            <span class="emoji">ℹ️</span>
+            <div class="content">
+                아래 프레임에서 직접 수정이 가능하며, 변경사항은 즉시 클라우드에 반영됩니다.
             </div>
-            <div class="iframe-wrapper">
-                <iframe src="https://docs.google.com/spreadsheets/d/1RjJlTltuygU9IbazCGKz0oqLmuPXuKa7Jm7MBBFh0yU/edit?rm=minimal"></iframe>
-            </div>
-        </section>
+        </div>
+
+        <div style="margin-bottom: 1rem; text-align: right;">
+            <a href="https://docs.google.com/spreadsheets/d/1RjJlTltuygU9IbazCGKz0oqLmuPXuKa7Jm7MBBFh0yU/edit" target="_blank" class="btn">
+                새 탭에서 시트 열기 ↗
+            </a>
+        </div>
+
+        <div class="iframe-wrapper">
+            <iframe src="https://docs.google.com/spreadsheets/d/1RjJlTltuygU9IbazCGKz0oqLmuPXuKa7Jm7MBBFh0yU/edit?rm=minimal"></iframe>
+        </div>
     </div>
 </body>
 </html>
