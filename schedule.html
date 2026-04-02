@@ -65,6 +65,7 @@
             border-radius: 32px; 
             padding: 3.5rem; 
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4); 
+            position: relative;
         }
 
         /* Markdown Elements styling (Dark Theme) */
@@ -124,6 +125,26 @@
         
         hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 3rem 0; }
 
+        /* Schedule Helper Components */
+        .btn-open-raw { 
+            position: absolute; 
+            top: 2rem; 
+            right: 2rem; 
+            padding: 0.6rem 1.2rem; 
+            background: rgba(56, 189, 248, 0.1); 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            border-radius: 12px; 
+            color: #38bdf8; 
+            font-size: 0.85rem; 
+            transition: all 0.3s ease; 
+        }
+        .btn-open-raw:hover { 
+            background: rgba(56, 189, 248, 0.2); 
+            border-color: #38bdf8; 
+            color: #fff; 
+            transform: translateY(-2px); 
+        }
+
         /* Google Sheet Iframe Container */
         .iframe-container { 
             width: 100%; 
@@ -153,7 +174,8 @@
     </nav>
     <div class="container">
         <div class="glass-card">
-            <h1>일정표</h1>
+            <a href="https://docs.google.com/spreadsheets/d/1RjJlTltuygU9IbazCGKz0oqLmuPXuKa7Jm7MBBFh0yU/edit" target="_blank" class="btn-open-raw">새 탭에서 시트 열기 ↗</a>
+            <h1>일정표</h1><div class="iframe-container"><iframe src="https://docs.google.com/spreadsheets/d/1RjJlTltuygU9IbazCGKz0oqLmuPXuKa7Jm7MBBFh0yU/edit?rm=minimal"></iframe></div>
         </div>
     </div>
 </body>
