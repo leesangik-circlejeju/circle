@@ -166,12 +166,14 @@
             <a href="index.html" id="nav-home">🏠 홈</a>
             <a href="schedule.html" id="nav-schedule">📅 일정표</a>
             <a href="files.html" id="nav-files">🛠️ 파일관리</a>
+            <a href="test_sheets.html" id="nav-test_sheets">📝 검사지</a>
+            <a href="old_files.html" id="nav-old_files">💾 기존파일</a>
         </nav>
         
         <div class="content">
             <h1>🗂️ 파일보관함</h1>
 <blockquote>
-<p>📂 구글 드라이브와 실시간 동기화된 관리 문서 목록입니다.</p>
+<p>📂 구글 드라이브와 실시간 동기화된 '파일보관함' 목록입니다.</p>
 </blockquote>
 <h2>⭐️ 필수 이용계약서</h2>
 <ul>
@@ -220,7 +222,6 @@
 
         // [추가] 모든 외부 링크 및 파일 링크를 새 창에서 열기
         document.querySelectorAll('.content a').forEach(link => {
-            // 외부 도메인이거나 구글 드라이브/시트 링크인 경우 새 창으로 설정
             if (link.hostname !== window.location.hostname || 
                 link.href.includes('docs.google.com') || 
                 link.href.includes('drive.google.com')) {
