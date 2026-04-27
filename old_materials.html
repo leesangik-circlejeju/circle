@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기존자료 - 동그라미 하네스</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-primary: #818cf8;
+            --accent-secondary: #c084fc;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: var(--text-main);
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 15px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            margin-top: 50px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        blockquote {
+            background: rgba(129, 140, 248, 0.1);
+            border-left: 5px solid var(--accent-primary);
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            color: var(--accent-primary);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        li {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 18px 25px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+        }
+
+        li:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-primary);
+            background: rgba(129, 140, 248, 0.15);
+        }
+
+        li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 400;
+            display: block;
+            width: 100%;
+        }
+
+        .btn-sheet {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-sheet:hover {
+            background: var(--accent-secondary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* [추가] 시트 컨테이너 스타일 */
+        .sheet-container {
+            width: 100%;
+            height: 700px;
+            margin-top: 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: #fff; /* 시트 로딩 전 배경 */
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html" id="nav-home">🏠 홈</a>
+            <a href="files.html" id="nav-files">🛠️ 파일관리</a>
+            <a href="test_sheets.html" id="nav-test_sheets">📝 검사지</a>
+            <a href="old_materials.html" id="nav-old_materials">💾 기존자료</a>
+        </nav>
+        
+        <div class="content">
+            <h1>🗂️ 기존자료</h1>
+<blockquote>
+<p>📂 구글 드라이브와 실시간 동기화된 '기존자료' 목록입니다.</p>
+</blockquote>
+<h2>📂 🏢 공통 및 최상위</h2>
+<ul>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/19Y50FOcLo7dDaGBfbDi6DAD1XNfoEj8Z/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 -박이솔.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1Glkz-aEHVhxCTEP4hqoR0Vq7XHEhQqun9H7ZWE0giDw/edit?usp=drivesdk">03 서비스 일정및 서비스관리 - 고하은</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/16ZNHtMYp9PcH7VprgGvLVHvPU0rM-WwJ/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리-김대영.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1D80NxXMr6ssvHQjzVNzCsXY6JeDQmUQx/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리-이서현.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1yU-g2qLKuZLuhawuxCWkqQwoQVfKyf0p/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리-조윤우.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1AoALfYqEV5cVbQIaoqPci-E-rJk-c8ow/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리-이서율.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/18AypiyC8GBPqgFAKlRRKa_wvdjkcJ5H8/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 김현우.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1kMaqWOkbsEm6W_uRQoztib9lOEhOCk8z/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 -신재영.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1v-yp117XB89V9F105ofSgGvHk18Jp7XQ/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 -이서온.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1D4Na6yKw7e4WH-jUKYqxetFe3YeCETKp/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 김서율.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1LfZq6S1kdUg_3zCuYekD-MI8xpPEOz8m/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 강현준.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/13VgFg2vrpMiLB7d2yl6tD9HSZ6P4ztrW/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정 및 서비스 관리A-이성희.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1sJQWfbdaaYX3RQhh9TCYrIUTzCqm0Axo/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정 및 서비스 관리A-김단비.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1GRWMzCYQtpOmvJgqFDS9W_d87vtlqPcg/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 김이준.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/18uPqKp2NupBFaWJv7wLlDABGFUi17yUQ/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리-강규민.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1X9ASkYzrvgmyZXfOD5fmjqoxPGq0CKYw/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 김서하.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1lGPjS9qUeY3UMOnMPynCIZ2hhlyT0uNy/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 김윤혁.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1D0rJNSNmqJb6yRIdyFN7OjSTP9ECLhDu/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정및 서비스관리 - 이준수.xlsx</a></li>
+<li>📄 <a href="https://docs.google.com/spreadsheets/d/1ilr7apkhLEu66H2Rjc-e0VpZP2B5KbQz/edit?usp=drivesdk&amp;ouid=113532951158480475120&amp;rtpof=true&amp;sd=true">03 서비스 일정 및 서비스 관리A-김복순.xlsx</a></li>
+</ul>
+        </div>
+    </div>
+    
+    <script>
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navId = 'nav-' + (currentPage.split('.')[0] || 'home');
+        const activeLink = document.getElementById(navId);
+        if (activeLink) activeLink.classList.add('active');
+
+        // [추가] 모든 외부 링크 및 파일 링크를 새 창에서 열기
+        document.querySelectorAll('.content a').forEach(link => {
+            if (link.hostname !== window.location.hostname || 
+                link.href.includes('docs.google.com') || 
+                link.href.includes('drive.google.com')) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    </script>
+</body>
+</html>
